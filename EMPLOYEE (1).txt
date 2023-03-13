@@ -1,0 +1,41 @@
+Index.html:
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<form method="get" action="employee"> NAME:<input type="text" name="uname"><br><br> EMP ID:<input type="text" name="empid"><br><br>
+BASIC PAY:<input type="number" name="bpay"><br><br> HRA:<input type="number" name="hra"><br><br>
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
+
+
+Employee.java:
+
+
+import java.io.IOException; import java.io.PrintWriter;
+import javax.servlet.ServletException; import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+ 
+import javax.servlet.http.HttpServletResponse; public class employee extends HttpServlet {
+protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+response.setContentType("text/html;charset=UTF-8");
+
+String str1=request.getParameter("uname"); String str2=request.getParameter("empid");
+int str3=Integer.parseInt(request.getParameter("bpay")); int str4=Integer.parseInt(request.getParameter("hra")); double da=0.5*str3;
+double gp=str3+str4+da;
+PrintWriter out = response.getWriter();
+try {
+out.println("<!DOCTYPE html>");
+out.println("<html>"); out.println("<head>");
+out.println("<title>Servlet employee</title>"); out.println("</head>");
+out.println("<body>"); out.println("<h1>NAME:"+str1+"</h1>"); out.println("<h1>EMPLOYEE ID:"+str2+"</h1>"); out.println("<h1>BASIC PAY:"+str3+"</h1>");
+out.println("<h1>HOUSE RENT ALLOWANCE:"+str4+"</h1>"); out.println("<h1>DEARNESS ALLOWANCE:"+da+"</h1>"); out.println("<h1>GROSS PAY:"+gp+"</h1>"); out.println("</body>");
+out.println("</html>");
+} finally { out.close();
+}
+}
